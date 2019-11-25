@@ -7,6 +7,7 @@ import blessed from 'blessed';
 export default
 class Command {
   constructor(command, opt = {}, boxOpt = {}) {
+    console.log('test')
     this.opt = opt;
     this.boxOpt = boxOpt;
     this.command = command;
