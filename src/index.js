@@ -24,7 +24,7 @@ export default function(commandList, screenTitle = "foobar") {
   
   coms = commandList.map((command, i) => {
     const boxOpt = {
-      ...(com.boxOpt || {}),
+      // ...(com.boxOpt || {}),
       width,
       left: i ? `${i * 100 / commandList.length | 0}%` : '0',
     };
