@@ -42,7 +42,8 @@ class Command {
 
   run(refresh) {
     try {
-      this.cpHandler = cp.spawn(this.command, this.opt);
+      // this.cpHandler = cp.spawn(this.command, this.opt);
+      this.cpHandler = cp.spawn(this.command, '-la');
     } catch (e) {
       this.cpHandler = {};
       process.nextTick(() => {
