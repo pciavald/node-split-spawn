@@ -190,8 +190,6 @@ class Command {
   }
 }
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 var index = function (commandList, screenTitle = "foobar") {
   const screen = blessed.screen({ smartCSR: true });
   let coms = [];
@@ -210,10 +208,11 @@ var index = function (commandList, screenTitle = "foobar") {
   const width = `${100 / commandList.length | 0}%`;
 
   coms = commandList.map((command, i) => {
-    const boxOpt = _extends({}, com.boxOpt || {}, {
+    const boxOpt = {
+      // ...(com.boxOpt || {}),
       width,
       left: i ? `${i * 100 / commandList.length | 0}%` : '0'
-    });
+    };
     const c = new Command(command.shift(), command, boxOpt);
     c.createBox();
     screen.append(c.box);
