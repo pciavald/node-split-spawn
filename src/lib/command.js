@@ -6,7 +6,7 @@ import blessed from 'blessed';
 
 export default
 class Command {
-  constructor(command, opt = {}, boxOpt = {}) {
+  constructor(command, opt, boxOpt = {}) {
     this.opt = opt;
     this.boxOpt = boxOpt;
     this.command = command;
@@ -41,8 +41,7 @@ class Command {
 
   run(refresh) {
     try {
-      // this.cpHandler = cp.spawn(this.command, this.opt);
-      this.cpHandler = cp.spawn(this.command, ['-la']);
+      this.cpHandler = cp.spawn(this.command, this.opt);
     } catch (e) {
       this.cpHandler = {};
       process.nextTick(() => {

@@ -23,15 +23,12 @@ export default function(commandList, screenTitle = "foobar") {
   const width = `${100 / commandList.length | 0}%`;
   
   coms = commandList.map((command, i) => {
-    const com =  { command };
-    
     const boxOpt = {
       ...(com.boxOpt || {}),
       width,
       left: i ? `${i * 100 / commandList.length | 0}%` : '0',
     };
-    
-    const c = new Command(com.command, com.opt || {}, boxOpt);
+    const c = new Command(command.shift(), command, boxOpt);
     c.createBox();
     screen.append(c.box);
     return c;

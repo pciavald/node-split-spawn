@@ -6,7 +6,10 @@
 ```
 import run from 'split-spawn';
 
-commands = ['echo 1 && sleep 1', 'ls -lA && sleep 1 && ls -l && sleep 1 && ls -l --color=always /var/log/'];
+commands = [
+  ['echo', 1],
+  ['ls', '-lA']
+];
 
 run(commands);
 ```

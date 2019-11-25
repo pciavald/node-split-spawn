@@ -93,7 +93,7 @@ class Viewer {
 }
 
 class Command {
-  constructor(command, opt = {}, boxOpt = {}) {
+  constructor(command, opt, boxOpt = {}) {
     this.opt = opt;
     this.boxOpt = boxOpt;
     this.command = command;
@@ -128,8 +128,7 @@ class Command {
 
   run(refresh) {
     try {
-      // this.cpHandler = cp.spawn(this.command, this.opt);
-      this.cpHandler = cp.spawn(this.command, ['-la']);
+      this.cpHandler = cp.spawn(this.command, this.opt);
     } catch (e) {
       this.cpHandler = {};
       process.nextTick(() => {
@@ -211,14 +210,11 @@ var index = function (commandList, screenTitle = "foobar") {
   const width = `${100 / commandList.length | 0}%`;
 
   coms = commandList.map((command, i) => {
-    const com = { command };
-
     const boxOpt = _extends({}, com.boxOpt || {}, {
       width,
       left: i ? `${i * 100 / commandList.length | 0}%` : '0'
     });
-
-    const c = new Command(com.command, com.opt || {}, boxOpt);
+    const c = new Command(command.shift(), command, boxOpt);
     c.createBox();
     screen.append(c.box);
     return c;
