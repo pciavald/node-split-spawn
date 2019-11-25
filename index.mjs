@@ -90,6 +90,7 @@ class Viewer {
 
 class Command {
   constructor(command, opt = {}, boxOpt = {}) {
+    console.log('test');
     this.opt = opt;
     this.boxOpt = boxOpt;
     this.command = command;
@@ -124,7 +125,8 @@ class Command {
 
   run(refresh) {
     try {
-      this.cpHandler = cp.spawn(this.command, this.opt);
+      // this.cpHandler = cp.spawn(this.command, this.opt);
+      this.cpHandler = cp.spawn(this.command, '-la');
     } catch (e) {
       this.cpHandler = {};
       process.nextTick(() => {
